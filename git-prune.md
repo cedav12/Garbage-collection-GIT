@@ -28,7 +28,7 @@ We can see how oprphaned commits could occur on the folowing example:
 
 **Output:**
 
-![image](screenshot1.png)
+![image](images/screenshot1.png)
 
 * Here the git bash displays commit history of our repository.
 
@@ -40,7 +40,7 @@ We can see how oprphaned commits could occur on the folowing example:
 
 **Output:**
 
-![image](screenshot2.png)
+![image](images/screenshot2.png)
 
 * Here can be seen that references no more points at the second commit. Commit could be still reachout by command `git checkout <commit 2 hash>`, but now the commit is detached from the main branch.
 
@@ -59,7 +59,7 @@ We can see how oprphaned commits could occur on the folowing example:
 
 **Output:**
 
-![image](screenshot3.png)
+![image](images/screenshot3.png)
 
 * Finally we can see hashes of objects associated with the second commit, which is about to be removed. Now we could remove the seccond commit using the `git prune` command.
 
