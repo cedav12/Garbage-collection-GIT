@@ -1,12 +1,12 @@
 # Git prune
-Second most important usecase of Git garbage collector is to remove orphaned or inaccessible commits. Git performes this operation at an assigned time automatically. This operation could be also run manually by `git prune`, which is an housekeeping feature build in `git gc` command. Command `git` will be describe in detail here.
+Second most important usecase of Git garbage collector is to remove orphaned or inaccessible commits. Git performs this operation at an assigned time automatically. This operation could be also run manually by `git prune`, which is a housekeeping feature built in `git gc` command. Command `git prune` will be describe in detail here.
 
 ## Orphaned commits
 Orphaned commits are commits inaccessible by any references. This situation could occur, when commands altering history such as `git reset` or `git rebase` are used.
 
-We can see how oprphaned commits could occur on the folowing example:
+We can see how orphaned commits could occur on the folowing example:
 
-1. Create git repository with text file `git-prune.txt` a modify it, which will create two commits in the repository:
+1. Create git repository with text file `git-prune.txt` and modify it, which will create two commits in the repository:
 
 `$ mkdir git-prune`
 
@@ -42,10 +42,10 @@ We can see how oprphaned commits could occur on the folowing example:
 
 ![image](images/screenshot2.PNG)
 
-* Here can be seen that references no more points at the second commit. Commit could be still reachout by command `git checkout <commit 2 hash>`, but now the commit is detached from the main branch.
+* Here can be seen that references no more points at the second commit. The commit could be still reached by command `git checkout <commit 2 hash>`, but now the commit is detached from the main branch.
 
 ## Git prune
-`git prune` is a command included in its parent command `git gc`. Git prune prunes all unaccessible objects form repository. The aim of this is to clean the working directory and prevent it from being chaotic. Git garbage collection automatically from time to time (which is defaultly set) detects unreachable objects and move them to pack file (these objects could by located by command `git prune-packed`). Usally there is no need to use directly `git prune`, `git gc` should be run instead. We will see on the example below how does the `git prune` command works:
+`git prune` is a command included in its parent command `git gc`. Git prune prunes all unaccessible objects form repository. The aim of this is to clean the working directory and prevent it from being chaotic. Git garbage collection automatically from time to time (which is defaultly set) detects unreachable objects and moves them to pack file (these objects could by located by command `git prune-packed`). Usually there is no need to use directly `git prune`, `git gc` should be run instead. We will see on the example below how the `git prune` command works:
 
 `$ git prune --dry-run --verbose`
 
