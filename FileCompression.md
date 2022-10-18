@@ -8,19 +8,24 @@ With each change that is commited, Git tracks the underlying information about t
 ## Showcase run
 
 1. Let's start with an empty local repository. We create **File1.txt** that only has one line, commit the change and perform `git cat-file --batch-check --batch-all-objects` to see the hash, type and size of all objects in our repository.
-![image](images/1_creating_a_file.jpg)
+
+  ![image](images/1_creating_a_file.jpg)
 
 2. In the **.git/objects** folder, we can see the three folders that represent the newly created objects by the first two symbols of their respective hashes.
-![image](images/2_folder_look.jpg)
+
+  ![image](images/2_folder_look.jpg)
 
 3. Now, let's perform a slight change to File1.txt and commit it. We added a single line and then ran `git cat-file --batch-check --batch-all-objects` again.
-![image](images/3_adding_a_line.jpg)
+
+  ![image](images/3_adding_a_line.jpg)
 
 As can be seen, we now have 6 objects, the new blob is naturally nearly twice as large, the ineffective thing is that we also still keep the previous blob in full!
 
 4. The **.git/objects** folder looks accordingly, the *info* and *pack* subfolders remain empty.
-![image](images/4_folder_look_second_change.jpg)
-![image](images/5_pack_empty_before_gc.jpg)
+
+  ![image](images/4_folder_look_second_change.jpg)
+
+  ![image](images/5_pack_empty_before_gc.jpg)
 
 5. This is where `git gc` comes in handy, we usually do not want to keep objects that contain identical parts since that costs us precious space. Furthermore, there are many options to specify how the `git gc` command should be run:
 - `--aggressive` takes a longer time, but performs a deeper optimization
@@ -30,18 +35,22 @@ As can be seen, we now have 6 objects, the new blob is naturally nearly twice as
 - `--no-prune` will not prune any loose objects, on the same note, `--prune=<date>` will only prune loose objects older than *<date>*. A special section is dedicated to the `git prune` command, exploring it into more detail.
 
 To show the most saved space possible, we use `git gc --aggressive`:
-![image](images/6_git_gc.jpg)
+
+  ![image](images/6_git_gc.jpg)
 
 6. Now that the command has been performed, we can view the immediate effects:
 
 *The state of the **.git/objects** folder has changed*
-![image](images/7_objects_folder.jpg)
+
+  ![image](images/7_objects_folder.jpg)
 
 *new files have been created in the pack subfolder*
-![image](images/8_pack_subfolder.jpg)
+
+  ![image](images/8_pack_subfolder.jpg)
 
 The best metaphor for the above process is "zipping" the objects into the pack file by compressing them all together. We can view the contents of the new **pack** file to see the whole extent of the operation, to do so we can use the command `git verify-pack -v` and add the path to the file.
-![image](images/9_contents_of_pack.jpg)
+
+  ![image](images/9_contents_of_pack.jpg)
 
 As opposed to the state prior to using `git gc`, we now have only have fully stored the latest *blob*, while its predecessor only contains the difference between them with reference to the new version at the end of the line.
 
