@@ -32,7 +32,7 @@ As can be seen, we now have 6 objects, the new blob is naturally nearly twice as
 - `--auto` uses heuristics to determine whether garbage collection should be performed at all, if not, it exits.
 - `--force` triggers `git gc` even if there might be one already in progress in the current repository (mostly used for remote repositories).
 - `--quiet` will hide all progress reports
-- `--no-prune` will not prune any loose objects, on the same note, `--prune=<date>` will only prune loose objects older than *<date>*. A special section is dedicated to the `git prune` command, exploring it into more detail.
+- `--no-prune` will not prune any loose objects, on the same note, `--prune=<date>` will only prune loose objects older than *date*. A special section is dedicated to the `git prune` command, exploring it in more detail.
 
 To show the most saved space possible, we use `git gc --aggressive`:
 
@@ -52,7 +52,7 @@ The best metaphor for the above process is "zipping" the objects into the pack f
 
   ![image](images/9_contents_of_pack.jpg)
 
-As opposed to the state prior to using `git gc`, we now have only have fully stored the latest *blob*, while its predecessor only contains the difference between them with reference to the new version at the end of the line.
+As opposed to the state prior to using `git gc`, we now have fully stored only the latest *blob*, while its predecessor only contains the difference between them with reference to the new version at the end of the line.
 
 ## Measuring effects
 
