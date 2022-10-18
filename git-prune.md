@@ -76,7 +76,7 @@ There are several methods how to use `git prune`. Most used ones will be describ
 
 `--expire <time>`
 
-* Objects older than *<time>* expire.
+* Objects older than *time* expire.
 
 ## Summary
 The `git prune` is a git command, that serves as cleaning method of git repository. Usually there is no need to run directly `git prune` because it is included in its parent command `git gc`. The usecase of the `git prune` command is to remove orphaned or unreachable objects, which usually occurs from the action of altering history by commands such as `git reset` or `git rebase`.
